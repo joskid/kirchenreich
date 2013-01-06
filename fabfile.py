@@ -61,6 +61,13 @@ def collectstatic():
 
 
 @task
+def build_assets():
+    """Build compilt and minified assets files"""
+    puts(yellow("Build assets files"))
+    django_manage('assets', 'build')
+
+
+@task
 def migrate():
     """Run the South migrations"""
     puts(yellow("Run South migrations"))
@@ -90,6 +97,7 @@ def deploy():
     git_pull()
     build_virtualenv()
     collectstatic()
+    build_assets()
     migrate()
     reload_gunicorn()
     restart_celery()

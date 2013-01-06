@@ -1,8 +1,12 @@
 {% extends "base.html" %}
 
+{% load assets %}
+
 {% block load_css %}
 {{ block.super }}
-<link rel="stylesheet" href="{{ STATIC_URL }}leaflet/leaflet.css" />
+{% assets "worshipmap_css" %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}" />
+{% endassets %}
 <!--[if lte IE 8]>
     <link rel="stylesheet" href="{{ STATIC_URL }}leaflet/leaflet.ie.css" />
 <![endif]-->
@@ -46,8 +50,9 @@ img {
 
 {% block load_js %}
 {{ block.super }}
-<script src="{{ STATIC_URL }}leaflet/leaflet.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/worshipmap.js"></script>
+{% assets "worshipmap_js" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
 {% endblock %}
 
 {% block run_js %}

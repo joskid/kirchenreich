@@ -74,9 +74,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_ROOT, "static"),
 )
 
 # List of finder classes that know how to find static files in
@@ -84,8 +82,13 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django_assets.finders.AssetsFinder'
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
+ASSETS_MODULES = [
+    'krprj.assets'
+]
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = None
@@ -129,6 +132,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'south',
     'djcelery',
+    'django_assets',
     'krprj.krunite',
     'krprj.osm',
     'krprj.wikipedia',
